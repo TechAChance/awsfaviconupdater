@@ -37,11 +37,12 @@ const SERVICES = [
 	"discovery",
 	"dms",
 	"dynamodb",
-	"ec2",
+	//"ec2",
 	"ec2sp",
-	"es",
+	"esv3",
 	"efs",
 	"ecs",
+	"ecr",
 	"eks",
 	"elasticache",
 	"elastictranscoder",
@@ -72,7 +73,7 @@ const SERVICES = [
 	"mediastore",
 	"mediatailor",
 	"migrationhub",
-	"mobilehub",
+	//"mobilehub",
 	"neptune",
 	"opsworks",
 	"pinpoint",
@@ -102,9 +103,8 @@ const SERVICES = [
 	"wafv2",
 	"workspaces",
 	"workmail",
-	"vpc",
-	"xray",
-	"zocalo", // This is 'workdocs'
+	//"vpc",
+	"xray"
 ];
 
 // Look for the string blocks right after the 'amazon.com/' (ec2/s3/iam/ses/etc...)
@@ -128,74 +128,9 @@ if (domain !== "docs.aws.amazon.com") {
 		awsServiceName = captureGroupArray[0][3];
 	}
 
+    let awsService = awsServiceName + ".png";
 	// We have found a match in the URL!
-	if (SERVICES.includes(awsServiceName)) {
-
-		let awsService = awsServiceName + ".png";
-
-		// In a lot of cases, we need to actually add the favicon tag, because no one at Amazon did this yet!
-		if (awsServiceName === 'amazon-mq' ||
-				awsServiceName === 'apigateway' ||
-				awsServiceName === 'appsync' ||
-				awsServiceName === 'athena' ||
-				awsServiceName === 'awsautoscaling' ||
-				awsServiceName === 'batch' ||
-				awsServiceName === 'billing' ||			
-				awsServiceName === 'cloud9' ||
-				awsServiceName === 'cloudhsm' ||
-				awsServiceName === 'cloudsearch' ||
-				awsServiceName === 'codebuild' ||
-				awsServiceName === 'codecommit' ||
-				awsServiceName === 'codedeploy' ||
-				awsServiceName === 'codepipeline' ||
-				awsServiceName === 'comprehend' ||
-				awsServiceName === 'connect' ||
-				awsServiceName === 'console' ||
-				awsServiceName === 'cost-reports' ||
-				awsServiceName === 'deeplens' ||
-				awsServiceName === 'directconnect' ||
-				awsServiceName === 'devicefarm' ||
-				awsServiceName === 'discovery' ||
-				awsServiceName === 'dms' ||
-				awsServiceName === 'es' ||
-				awsServiceName === 'efs' ||
-				awsServiceName === 'ecs' ||
-				awsServiceName === 'eks' ||
-				awsServiceName === 'glacier' ||
-				awsServiceName === 'glue' ||
-				awsServiceName === 'guardduty' ||
-				awsServiceName === 'iot' ||
-				awsServiceName === 'importexport' ||
-				awsServiceName === 'kinesis' ||
-				awsServiceName === 'kinesisvideo' ||
-				awsServiceName === 'kms' ||
-				awsServiceName === 'lex' ||
-				awsServiceName === 'ls' ||
-				awsServiceName === 'machinelearning' ||
-				awsServiceName === 'mediaconvert' ||
-				awsServiceName === 'medialive' ||
-				awsServiceName === 'mediapackage' ||
-				awsServiceName === 'mediastore' ||
-				awsServiceName === 'mediatailor' ||
-				awsServiceName === 'migrationhub' ||
-				awsServiceName === 'polly' ||
-				awsServiceName === 'rekognition' ||
-				awsServiceName === 's3' ||
-				awsServiceName === 'sagemaker' ||
-				awsServiceName === 'servermigration' ||
-				awsServiceName === 'sns' ||
-				awsServiceName === 'storagegateway' ||
-				awsServiceName === 'sumerian' ||
-				awsServiceName === 'systems-manager' ||
-				awsServiceName === 'swf' ||
-				awsServiceName === 'transcribe' ||
-				awsServiceName === 'translate' ||
-				awsServiceName === 'waf' ||
-				awsServiceName === 'wafv2' ||
-				awsServiceName === 'workmail' ||
-				awsServiceName === 'xray' ||
-				awsServiceName === 'zocalo') {
-
+	    if (SERVICES.includes(awsServiceName)) {
 			// Build the icon and shortcut icon tags so we can add them inside the head tag
 			let iconNode = document.createElement('link');
 			iconNode.setAttribute('rel', 'icon');
@@ -247,10 +182,6 @@ if (domain !== "docs.aws.amazon.com") {
 
 			document.getElementsByTagName('head')[0].appendChild(iconNode);
 			document.getElementsByTagName('head')[0].appendChild(shortcutIconNode);
-
-
-
-
 
 		} else if(awsServiceName === 'vpc') {
 
@@ -305,5 +236,4 @@ if (domain !== "docs.aws.amazon.com") {
 				}
 			}
 		}
-	}
 }
