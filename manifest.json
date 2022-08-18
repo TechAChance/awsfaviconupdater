@@ -2,13 +2,26 @@
   "manifest_version": 3,
   "name": "AWS Favicon Update",
   "description": "IAM shouldn't be the only tab with a unique favicon!  This sets favicons for many AWS services, so your tabs make more sense.",
-  "version": "3.0",
+  "version": "3.1",
   "author": "Jaime Barriga",
   "icons": {
     "16": "colorcube16.png",
     "48": "colorcube48.png",
     "128": "colorcube128.png"
   },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "permissions": [
+    "background",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.aws.amazon.com/*",
+    "https://*.amazonaws-us-gov.com/*"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -23,11 +36,12 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": [
-        "icons/*"
+      "matches": [
+        "<all_urls>"
       ],
-      "matches": [],
-      "extension_ids": []
+      "resources": [
+        "icons/*.png"
+      ]
     }
   ]
 }
